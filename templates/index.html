@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR"> <!-- Define o idioma da página como português do Brasil -->
+<head>
+    <meta charset="UTF-8"> <!-- Define a codificação de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura a viewport para responsividade -->
+    <title>Banese Card Login</title> <!-- Define o título da página -->
+    <link rel="stylesheet" href="static/style.css"> <!-- Link para o arquivo de estilos CSS -->
+</head>
+<body>
+    <div class="container"> <!-- Contêiner principal da página -->
+        <div class="login-box"> <!-- Caixa de login -->
+            <div class="login-form"> <!-- Formulário de login -->
+                <img src="static/img/baneseCard.png" alt="Banese Card Logo" class="logo"> <!-- Logo do Banese Card -->
+                <h2>Gestor</h2> <!-- Título do formulário -->
+                <form method="POST"> <!-- Início do formulário -->
+                    <label for="id-gestor"></label> <!-- Rótulo para o campo de ID do gestor (vazio) -->
+                    <input type="text" id="id-gestor" name="id-gestor"> <!-- Campo de entrada para o ID do gestor -->
+                    <label for="senha"></label> <!-- Rótulo para o campo de senha (vazio) -->
+                    <input type="password" id="senha" name="senha"> <!-- Campo de entrada para a senha -->
+                    <button type="submit" class="sign-in-btn">Sign in</button> <!-- Botão de envio do formulário com evento onclick para a função logIn() -->
+                </form>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <ul>
+                            {% for message in messages %}
+                                <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="admin-box"> <!-- Caixa de administrador -->
+                <h2 id="bem-vindo">Bem vindo Gestor!</h2> <!-- Mensagem de boas-vindas -->
+                <p id="pronto">Pronto para fazer acontecer?</p> <!-- Mensagem adicional -->
+                <button class="admin-btn">Sou Administrador</button> <!-- Botão para administradores -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
