@@ -1,46 +1,178 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pré-relatório da campanha</title>
+    <link rel="shortcut icon" href="static/img/Dashboard/logo1.jpeg" type="image/x-icon">
+    <title>Banese Card</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d3d3d3;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 30%;
+            background-color: #f8f6f1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .back-button {
+            background-color: #1ab569;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .pre-relatorio h2 {
+            margin-bottom: 20px;
+            color: #2e2e2e;
+        }
+
+        .input-campanha {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: none;
+            background-color: #004d42;
+            color: white;
+            font-size: 16px;
+        }
+
+        .imagem-campanha {
+            width: 100%;
+            height: 200px;
+            background-color: #d3d3d3;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            font-size: 18px;
+        }
+
+        .main-content {
+            width: 70%;
+            padding: 40px;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 150px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            color: #2e2e2e;
+        }
+
+        .form {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-main {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 1px solid #cccccc;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        .upload-area {
+            width: 100%;
+            height: 150px;
+            border: 2px dashed #cccccc;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .upload-button {
+            background-color: #1ab569;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .continue-button {
+            background-color: #1ab569;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+    </style>
 </head>
 <body>
     <div class="container">
-        <div class="left-panel">
-            <a href="#" class="back-btn">Voltar</a>
-            <h2>Pré-relatório da campanha</h2>
-            <div class="form-group">
-                <label for="nome-campanha-left">Nome da campanha</label>
-                <input type="text" id="nome-campanha-left" placeholder="Nome da campanha">
-            </div>
-            <div class="form-group">
-                <label for="desc-campanha-left">Descrição da campanha</label>
-                <input type="text" id="desc-campanha-left" placeholder="Descrição da campanha">
-            </div>
-            <div class="image-upload">
-                <label>Imagem da Campanha</label>
-                <div class="image-placeholder">
-                    Imagem da Campanha
+        <div class="sidebar">
+            <button class="back-button">← Voltar</button>
+            <div class="pre-relatorio">
+                <h2>Pré-relatório da campanha</h2>
+                <input type="text" placeholder="Nome da campanha" class="input-campanha">
+                <input type="text" placeholder="Descrição da campanha" class="input-campanha">
+                <div class="imagem-campanha">
+                    <p>Imagem da Campanha</p>
                 </div>
             </div>
         </div>
-        <div class="right-panel">
-            <h2>Vamos Começar!</h2>
-            <div class="form-group">
-                <label for="nome-campanha-right">Nome Campanha</label>
-                <input type="text" id="nome-campanha-right" placeholder="Nome da Campanha">
+
+        <div class="main-content">
+            <div class="logo">
+                <img src="logo.png" alt="Banese Card">
             </div>
-            <div class="form-group">
-                <label for="desc-campanha-right">Descrição da Campanha</label>
-                <textarea id="desc-campanha-right" placeholder="Descrição da Campanha"></textarea>
+            <h1>Vamos Começar!</h1>
+            <div class="form">
+                <input type="text" placeholder="Nome Campanha" class="input-main">
+                <textarea placeholder="Descrição da Campanha" class="input-main"></textarea>
+                <div class="upload-area">
+                    <p>Arraste sua imagem aqui ou</p>
+                    <button class="upload-button">Upload</button>
+                </div>
+                <button class="continue-button">Continuar</button>
             </div>
-            <div class="image-upload">
-                <label for="file-upload">Arraste sua imagem aqui ou</label>
-                <input type="file" id="file-upload">
-                <label for="file-upload" class="upload-btn">Upload</label>
-            </div>
-            <button class="continue-btn">Continuar</button>
         </div>
     </div>
 </body>

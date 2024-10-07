@@ -4,7 +4,131 @@
     <meta charset="UTF-8"> <!-- Define a codificação de caracteres como UTF-8 -->
     <meta content="width=device-width, initial-scale=1.0"> <!-- Configura a viewport para responsividade -->
     <title>Banese Card Dashboard</title> <!-- Define o título da página -->
-    <link rel="stylesheet" href="static/dashboard.css"> <!-- Link para o arquivo de estilos CSS -->
+    <link rel="shortcut icon" href="static/img/Dashboard/logo1.jpeg" type="image/x-icon">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #E3E3E3;
+        }
+
+        header {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            border-radius: 10px 10px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 50px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-pic {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .greeting {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        .settings-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .settings-btn img {
+            width: 25px;
+            height: 25px;
+        }
+
+        /* Dashboard Styles */
+        .dashboard-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 70px;
+        }
+
+        .grid-item {
+            justify-content: center;
+            align-items: center;
+            background-color: #005E52;
+            color: #F8F6F0;
+            width: 182px;
+            height: 182px;
+            flex-shrink: 0;
+            border-radius: 15px 0px;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .grid-item:hover {
+            background-color: #005b2a;
+        }
+
+        .grid-item img {
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
+
+        .grid-item p {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .clik-item {
+            justify-content: center;
+            align-items: center;
+            width: 182px;
+            height: 182px;
+            flex-shrink: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 800px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <header> <!-- Cabeçalho da página -->
@@ -24,15 +148,15 @@
         <div class="grid"> <!-- Grid para organizar os itens do dashboard -->
                 <div class="grid-item" > <!-- Item do grid -->
                     <form action="{{ url_for('create') }}" method="GET">
-                        <div onclick="this.closest('form').submit()">
+                        <div onclick="this.closest('form').submit()" class="clik-item">
                             <img src="static/img/Dashboard/plus.png" alt="Criar nova campanha" onclick="this.closest('form').submit()"> <!-- Ícone para criar nova campanha -->
                             <p>Criar nova campanha</p> <!-- Texto para criar nova campanha -->
                         </div>
                     </form>
                 </div>
             <div class="grid-item"> <!-- Item do grid -->
-                <form action="{{ url_for('campanhas') }}" method="GET"></form>
-                    <div onclick="this.closest('form').submit()">
+                <form action="{{ url_for('campanhas') }}" method="GET">
+                    <div class="clik-item">
                         <img src="static/img/Dashboard/icon_lapis.png" alt="Editar campanha"> <!-- Ícone para editar campanha -->
                         <p>Editar campanha</p> <!-- Texto para editar campanha -->
                     </div>
@@ -40,7 +164,7 @@
             </div>
             <div class="grid-item"> <!-- Item do grid -->
                 <form action="{{ url_for('campanhas') }}" method="GET">
-                    <div onclick="this.closest('form').submit()">
+                    <div onclick="this.closest('form').submit()" class="clik-item">
                         <img src="static/img/Dashboard/icon_lista.png" alt="Visualizar campanhas"> <!-- Ícone para visualizar campanhas -->
                         <p>Visualizar campanhas</p> <!-- Texto para visualizar campanhas -->
                     </div>
@@ -63,8 +187,12 @@
                 <p>Gerenciar Integrações</p> <!-- Texto para gerenciar integrações -->
             </div>
             <div class="grid-item"> <!-- Item do grid -->
-                <img src="static/img/Dashboard/icon_trofeu.png" alt="Definir Premiações"> <!-- Ícone para definir premiações -->
-                <p>Definir Premiações</p> <!-- Texto para definir premiações -->
+                <form action="{{ url_for('premiacoes') }}" method="GET">
+                    <div onclick="this.closest('form').submit()" class="clik-item">
+                        <img src="static/img/Dashboard/icon_trofeu.png" alt="Definir Premiações"> <!-- Ícone para definir premiações -->
+                        <p>Definir Premiações</p> <!-- Texto para definir premiações -->
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -81,6 +81,17 @@ def campanhas():
     else:
         return redirect(url_for('login'))
 
+@app.route('/premiacoes')
+def premiacoes():
+    if 'user' in session:
+        if request.method == 'POST':
+            item = request.form['item']
+            crud_data.append(item)
+            return redirect(url_for('dashboard'))
+        return render_template('premiacoes.html')
+    else:
+        return redirect(url_for('login'))
+
 @app.route('/logout')
 def logout():
     session.pop('user', None)
