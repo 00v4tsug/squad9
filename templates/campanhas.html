@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suas Campanhas - Banese Card</title> 
+    <!-- Link da fonte Noyh Bold -->
+    <link href="https://fonts.googleapis.com/css2?family=Noyh:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f6f2; /* Cor de fundo */
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* 100% da altura da tela */
+            width: 100vw; /* 100% da largura da tela */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Para evitar rolagem */
+        }
+
+        .container {
+            width: 100vw; /* Garante que ocupe toda a largura da tela */
+            padding: 20px;
+            min-height: 100vh; /* Garante que a altura mínima seja 100vh */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Fundo abrangendo logo, título e campanhas */
+        .header-section {
+            background-color: #f0f4f8; /* Cor de fundo ao redor */
+            padding: 40px; /* Preenchimento aumentado */
+            border-radius: 30px; /* Bordas arredondadas */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra mais suave */
+            text-align: center; /* Centraliza o conteúdo */
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out; /* Animação suave */
+        }
+
+        .header-section:hover {
+            transform: scale(1.02); /* Leve aumento ao passar o mouse */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra mais intensa ao passar o mouse */
+        }
+
+        h1 {
+            color: #2e3030; /* Cor da fonte "Suas Campanhas" */
+            margin-top: 20px; /* Espaço entre a logo e o título */
+            font-size: 2.5rem; /* Aumenta o tamanho da fonte */
+            font-family: 'Noyh-Bold', sans-serif; /* Fonte Noyh Bold */
+            display: inline-block;
+            padding-bottom: 10px;
+            position: relative; /* Para posicionar o traço */
+        }
+
+        /* Traço pequeno e mais grosso embaixo do texto */
+        h1::after {
+            content: "";
+            display: block;
+            width: 50%; /* Aproximadamente metade do tamanho do texto */
+            height: 4px; /* Mais grosso */
+            background-color: #0ef758; /* Cor verde */
+            margin: 10px auto 0; /* Centralizado e pequeno espaço acima */
+        }
+
+        .campaigns {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .campaign-box {
+            width: 100%;
+            max-width: 400px; /* Limita a largura máxima */
+            background-color: #015f53;
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 15px; /* Bordas arredondadas */
+            cursor: pointer;
+            text-decoration: none;
+            margin: 15px 0;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        }
+
+        .campaign-box h2 {
+            margin: 0;
+            font-size: 1.5rem; /* Ajusta o tamanho do título */
+        }
+
+        .campaign-box p {
+            margin-top: 10px;
+            font-size: 1rem; /* Tamanho da descrição */
+        }
+
+        /* Animação ao passar o mouse nas campanhas */
+        .campaign-box:hover {
+            background-color: #014b46; /* Muda a cor de fundo ao passar o mouse */
+            transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra mais intensa */
+        }
+
+        /* Ajuste da centralização da logo */
+        img {
+            width: 200px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 600px) {
+            .header-section {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .campaign-box {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-section">
+            <img src="squad9/static/img/Dashboard/baneseCard.png" alt="Banese Card">
+            <h1>Suas Campanhas</h1>
+
+            <div class="campaigns">
+                <a href="https://www.banesecard.com.br/" class="campaign-box">
+                    <h2>Suas campanhas ativas</h2>
+                    <p>Veja as suas campanhas ativas, selecione e as edite</p>
+                </a>
+                <a href="https://www.banesecard.com.br/#cartoes" class="campaign-box">
+                    <h2>Suas campanhas finalizadas</h2>
+                    <p>Veja as suas campanhas finalizadas, selecione e as edite</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

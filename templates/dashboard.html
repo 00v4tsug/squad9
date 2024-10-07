@@ -22,17 +22,29 @@
 
     <div class="dashboard-container"> <!-- Contêiner principal do dashboard -->
         <div class="grid"> <!-- Grid para organizar os itens do dashboard -->
+                <div class="grid-item" > <!-- Item do grid -->
+                    <form action="{{ url_for('create') }}" method="GET">
+                        <div onclick="this.closest('form').submit()">
+                            <img src="static/img/Dashboard/plus.png" alt="Criar nova campanha" onclick="this.closest('form').submit()"> <!-- Ícone para criar nova campanha -->
+                            <p>Criar nova campanha</p> <!-- Texto para criar nova campanha -->
+                        </div>
+                    </form>
+                </div>
             <div class="grid-item"> <!-- Item do grid -->
-                <img src="static/img/Dashboard/plus.png" alt="Criar nova campanha"> <!-- Ícone para criar nova campanha -->
-                <p>Criar nova campanha</p> <!-- Texto para criar nova campanha -->
+                <form action="{{ url_for('campanhas') }}" method="GET"></form>
+                    <div onclick="this.closest('form').submit()">
+                        <img src="static/img/Dashboard/icon_lapis.png" alt="Editar campanha"> <!-- Ícone para editar campanha -->
+                        <p>Editar campanha</p> <!-- Texto para editar campanha -->
+                    </div>
+                </form>
             </div>
             <div class="grid-item"> <!-- Item do grid -->
-                <img src="static/img/Dashboard/icon_lapis.png" alt="Editar campanha"> <!-- Ícone para editar campanha -->
-                <p>Editar campanha</p> <!-- Texto para editar campanha -->
-            </div>
-            <div class="grid-item"> <!-- Item do grid -->
-                <img src="static/img/Dashboard/icon_lista.png" alt="Visualizar campanhas"> <!-- Ícone para visualizar campanhas -->
-                <p>Visualizar campanhas</p> <!-- Texto para visualizar campanhas -->
+                <form action="{{ url_for('campanhas') }}" method="GET">
+                    <div onclick="this.closest('form').submit()">
+                        <img src="static/img/Dashboard/icon_lista.png" alt="Visualizar campanhas"> <!-- Ícone para visualizar campanhas -->
+                        <p>Visualizar campanhas</p> <!-- Texto para visualizar campanhas -->
+                    </div>
+                </form>
             </div>
             <div class="grid-item"> <!-- Item do grid -->
                 <img src="static/img/Dashboard/icon_cog.png" alt="Configurar parâmetros"> <!-- Ícone para configurar parâmetros -->

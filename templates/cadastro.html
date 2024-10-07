@@ -18,7 +18,7 @@
                     <input type="text" id="id-gestor" name="id-gestor"> <!-- Campo de entrada para o ID do gestor -->
                     <label for="senha"></label> <!-- Rótulo para o campo de senha (vazio) -->
                     <input type="password" id="senha" name="senha"> <!-- Campo de entrada para a senha -->
-                    <button type="submit" class="sign-in-btn">Sign in</button> <!-- Botão de envio do formulário com evento onclick para a função logIn() -->
+                    <button type="submit" class="sign-in-btn">Login</button> <!-- Botão de envio do formulário com evento onclick para a função logIn() -->
                 </form>
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
@@ -33,7 +33,7 @@
             <div class="admin-box"> <!-- Caixa de administrador -->
                 <h2 id="bem-vindo">Bem vindo Gestor!</h2> <!-- Mensagem de boas-vindas -->
                 <p id="pronto">Pronto para fazer acontecer?</p> <!-- Mensagem adicional -->
-                <button class="admin-btn">Sou Administrador</button> <!-- Botão para administradores -->
+                <button class="admin-btn">Cadastrar</button> <!-- Botão para administradores -->
             </div>
         </div>
     </div>
