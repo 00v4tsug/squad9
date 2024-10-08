@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="static/img/Dashboard/logo1.jpeg" type="image/x-icon">
     <title>Banese Card</title>
+    <link rel="shortcut icon" href="static/img/Dashboard/logo1.jpeg" type="image/x-icon">
     <style>
         * {
             margin: 0;
@@ -40,6 +40,11 @@
             font-size: 16px;
             cursor: pointer;
             margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #159e56;
         }
 
         .pre-relatorio h2 {
@@ -121,6 +126,13 @@
             justify-content: center;
             align-items: center;
             margin-bottom: 20px;
+            background-color: #f0f0f0; /* Cor de fundo padrão */
+            transition: border-color 0.3s ease, background-image 0.3s ease;
+        }
+
+        .upload-area:hover {
+            border-color: #1ab569;
+            cursor: pointer;
         }
 
         .upload-button {
@@ -131,6 +143,11 @@
             border-radius: 10px;
             font-size: 16px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .upload-button:hover {
+            background-color: #159e56;
         }
 
         .continue-button {
@@ -141,14 +158,43 @@
             border-radius: 10px;
             font-size: 18px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .continue-button:hover {
+            background-color: #159e56;
+        }
+
+        /* Input de upload de arquivos oculto */
+        #file-upload {
+            display: none;
         }
 
     </style>
+    <script>
+        function showImage() {
+            var file = document.getElementById("file-upload").files[0];  // Pega o arquivo selecionado
+            var reader = new FileReader();
+        
+            reader.onloadend = function() {
+                var uploadArea = document.getElementById("upload-area");
+                uploadArea.style.backgroundImage = "url('" + reader.result + "')";
+                uploadArea.style.backgroundSize = "cover";
+                uploadArea.style.backgroundPosition = "center";
+                uploadArea.style.border = "none";  // Remove o estilo de borda
+                uploadArea.innerHTML = "";  // Limpa o texto dentro da div
+            }
+        
+            if (file) {
+                reader.readAsDataURL(file);  // Converte o arquivo para uma URL temporária
+            }
+        }
+        </script>
 </head>
 <body>
     <div class="container">
         <div class="sidebar">
-            <button class="back-button">← Voltar</button>
+            <button class="back-button" onclick="window.location.href='/'">← Voltar</button>
             <div class="pre-relatorio">
                 <h2>Pré-relatório da campanha</h2>
                 <input type="text" placeholder="Nome da campanha" class="input-campanha">
@@ -161,18 +207,19 @@
 
         <div class="main-content">
             <div class="logo">
-                <img src="logo.png" alt="Banese Card">
+                <img src="static/img/baneseCard.png" alt="Banese Card">
             </div>
             <h1>Vamos Começar!</h1>
-            <div class="form">
+            <form method="POST" enctype="multipart/form-data">
                 <input type="text" placeholder="Nome Campanha" class="input-main">
                 <textarea placeholder="Descrição da Campanha" class="input-main"></textarea>
-                <div class="upload-area">
+                <div class="upload-area" id="upload-area">
                     <p>Arraste sua imagem aqui ou</p>
-                    <button class="upload-button">Upload</button>
+                    <input type="file" name="file" id="file-upload" onchange="showImage()">
+                    <label for="file-upload" class="upload-button">Upload</label>
                 </div>
-                <button class="continue-button">Continuar</button>
-            </div>
+                <button type="submit" class="continue-button">Continuar</button>
+            </form>
         </div>
     </div>
 </body>

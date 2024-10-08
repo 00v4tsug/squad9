@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
+import os
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
@@ -42,9 +43,15 @@ def dashboard():
 def create():
     if 'user' in session:
         if request.method == 'POST':
-            item = request.form['item']
-            crud_data.append(item)
-            return redirect(url_for('dashboard'))
+            if 'file' not in request.files:
+                return redirect(url_for('create'))
+            file = request.files['file']
+            if file.filename == '':
+                return redirect(url_for('create'))
+            if file:
+                file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+                file.save(file_path)
+                return f'Upload realizado com sucesso!'
         return render_template('create.html')
     else:
         return redirect(url_for('login'))
