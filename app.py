@@ -6,6 +6,11 @@ app.secret_key = 'supersecretkey'
 
 users = {'admin': 'password'}
 crud_data = []
+crud_data = {
+    'nomes': [],
+    'descricoes': [],
+    'nomearquivos': []
+}
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -39,19 +44,35 @@ def dashboard():
         return redirect(url_for('login'))
 
 # Criar novo item
-@app.route('/create')
+@app.route('/create', methods=['GET', 'POST'])
 def create():
     if 'user' in session:
         if request.method == 'POST':
             if 'file' not in request.files:
                 return redirect(url_for('create'))
+            nome = request.form['nome']
+            descricao = request.form['descricao']
             file = request.files['file']
             if file.filename == '':
                 return redirect(url_for('create'))
             if file:
-                file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-                file.save(file_path)
-                return f'Upload realizado com sucesso!'
+                if name:
+                    if descricao:
+                        file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+                        file.save(file_path)
+                        crud_data['nomes'].append(nome)
+                        crud_data['descricoes'].append(descricao)
+                        crud_data['nomearquivos'].append(file.filename)
+                    else:
+                        return redirect(url_for('create'))
+                        flash('Campo Descriçao Campanha na consta.')
+                else:
+                    return redirect(url_for('create'))
+                    flash('Campo Nome Campanha na consta.')
+            else:
+                return redirect(url_for('create'))
+                flash('É preciso selecionar uma imagem.') 
+
         return render_template('create.html')
     else:
         return redirect(url_for('login'))

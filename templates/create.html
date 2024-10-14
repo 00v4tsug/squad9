@@ -14,71 +14,20 @@
 
         body {
             font-family: Arial, sans-serif;
-            background-color: #d3d3d3;
-        }
-
-        .container {
-            display: flex;
-            height: 100vh;
-        }
-
-        .sidebar {
-            width: 30%;
             background-color: #f8f6f1;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .back-button {
-            background-color: #1ab569;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-bottom: 20px;
-            transition: background-color 0.3s ease;
-        }
-
-        .back-button:hover {
-            background-color: #159e56;
-        }
-
-        .pre-relatorio h2 {
-            margin-bottom: 20px;
-            color: #2e2e2e;
-        }
-
-        .input-campanha {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            border: none;
-            background-color: #004d42;
-            color: white;
-            font-size: 16px;
-        }
-
-        .imagem-campanha {
-            width: 100%;
-            height: 200px;
-            background-color: #d3d3d3;
-            border-radius: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: black;
-            font-size: 18px;
+            height: 100vh;
         }
 
-        .main-content {
-            width: 70%;
-            padding: 40px;
+        .container {
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
             background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -114,6 +63,23 @@
         textarea {
             resize: none;
             height: 100px;
+        }
+        .back-button {
+            background-color: #1ab569;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .back-button:hover {
+            background-color: #159e56;
         }
 
         .upload-area {
@@ -178,7 +144,7 @@
         
             reader.onloadend = function() {
                 var uploadArea = document.getElementById("upload-area");
-                uploadArea.style.backgroundImage = "url('" + reader.result + "')";
+                uploadArea.style.backgroundImage = "url('" + reader.result + "')";  // Define a imagem de fundo
                 uploadArea.style.backgroundSize = "cover";
                 uploadArea.style.backgroundPosition = "center";
                 uploadArea.style.border = "none";  // Remove o estilo de borda
@@ -189,38 +155,26 @@
                 reader.readAsDataURL(file);  // Converte o arquivo para uma URL temporária
             }
         }
-        </script>
+    </script>
 </head>
 <body>
+    <button class="back-button" onclick="window.location.href='/'">← Voltar</button>
+    
     <div class="container">
-        <div class="sidebar">
-            <button class="back-button" onclick="window.location.href='/'">← Voltar</button>
-            <div class="pre-relatorio">
-                <h2>Pré-relatório da campanha</h2>
-                <input type="text" placeholder="Nome da campanha" class="input-campanha">
-                <input type="text" placeholder="Descrição da campanha" class="input-campanha">
-                <div class="imagem-campanha">
-                    <p>Imagem da Campanha</p>
-                </div>
-            </div>
+        <div class="logo">
+            <img src="static/img/baneseCard.png" alt="Banese Card">
         </div>
-
-        <div class="main-content">
-            <div class="logo">
-                <img src="static/img/baneseCard.png" alt="Banese Card">
+        <h1>Vamos Começar!</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="text" name="nome" placeholder="Nome Campanha" class="input-main">
+            <textarea name="descricao" placeholder="Descrição da Campanha" class="input-main"></textarea>
+            <div class="upload-area" id="upload-area">
+                <p>Arraste sua imagem aqui ou</p>
+                <input type="file" name="file" id="file-upload" onchange="showImage()">
+                <label for="file-upload" class="upload-button">Upload</label>
             </div>
-            <h1>Vamos Começar!</h1>
-            <form method="POST" enctype="multipart/form-data">
-                <input type="text" placeholder="Nome Campanha" class="input-main">
-                <textarea placeholder="Descrição da Campanha" class="input-main"></textarea>
-                <div class="upload-area" id="upload-area">
-                    <p>Arraste sua imagem aqui ou</p>
-                    <input type="file" name="file" id="file-upload" onchange="showImage()">
-                    <label for="file-upload" class="upload-button">Upload</label>
-                </div>
-                <button type="submit" class="continue-button">Continuar</button>
-            </form>
-        </div>
+            <button type="submit" class="continue-button">Continuar</button>
+        </form>
     </div>
 </body>
 </html>
