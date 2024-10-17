@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR"> <!-- Define o idioma da página como português do Brasil -->
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8"> <!-- Define a codificação de caracteres como UTF-8 -->
-    <meta content="width=device-width, initial-scale=1.0"> <!-- Configura a viewport para responsividade -->
-    <title>Banese Card Dashboard</title> <!-- Define o título da página -->
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0">
+    <title>Banese Card Dashboard</title>
     <link rel="shortcut icon" href="static/img/Dashboard/logo1.jpeg" type="image/x-icon">
     <style>
         /* General Styles */
@@ -11,37 +11,12 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #E3E3E3;
-        }
-
-        header {
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
-            border-radius: 10px 10px;
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            height: 50px;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .profile-pic {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.5) 50%, #005e52 50%), 
+                        url('static/img/background.webp'); /* Gradiente + Imagem de Fundo */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
         }
 
         .greeting {
@@ -63,41 +38,57 @@
         /* Dashboard Styles */
         .dashboard-container {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            padding: 20px;
+        }
+
+        .section {
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #005E52;
+            margin-bottom: 20px;
+            text-align: left;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 70px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
         }
 
         .grid-item {
-            justify-content: center;
-            align-items: center;
             background-color: #005E52;
             color: #F8F6F0;
-            width: 182px;
-            height: 182px;
-            flex-shrink: 0;
+            width: 100%;
+            height: 220px;
             border-radius: 15px 0px;
             box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
             padding: 20px;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
             text-align: center;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .grid-item:hover {
-            background-color: #005b2a;
+            background-color: #004d40;
+            transform: scale(1.05);
         }
 
         .grid-item img {
             margin-top: 15px;
-            margin-bottom: 0px;
+            margin-bottom: 10px;
         }
 
         .grid-item p {
@@ -106,24 +97,50 @@
         }
 
         .clik-item {
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             width: 182px;
             height: 182px;
-            flex-shrink: 0;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .clik-item:hover {
+            transform: rotate(5deg);
+        }
+
+        footer {
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
-            display: flex;
-            flex-direction: column;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+            margin-top: 40px;
+            position: relative;
+            bottom: 0;
+            width: 97.9%;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        footer a {
+            color: #005E52;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
 
         /* Responsive Design */
-        @media (max-width: 800px) {
-            .grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 500px) {
+        @media (max-width: 1000px) {
             .grid {
                 grid-template-columns: 1fr;
             }
@@ -131,70 +148,60 @@
     </style>
 </head>
 <body>
-    <header> <!-- Cabeçalho da página -->
-        <div class="header-container"> <!-- Contêiner do cabeçalho -->
-            <img src="static/img/baneseCard.png" alt="Banese Card Logo" class="logo"> <!-- Logo do Banese Card -->
-            <div class="user-info"> <!-- Informações do usuário -->
-                <img src="static/img/Dashboard/logousuario.png" alt="Profile Picture" class="profile-pic"> <!-- Foto de perfil do usuário -->
-                <span class="greeting">Olá admin!</span> <!-- Saudação ao usuário -->
-                <button class="settings-btn"> <!-- Botão de configurações -->
-                    <img src="static/img/Dashboard/config_outline(1).png" alt="Settings"> <!-- Ícone de configurações -->
-                </button>
+
+    <header style="background-color: #bfb9ac; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); margin-bottom: 40px; border-radius: 10px 10px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <img src="static/img/baneseCard.png" alt="Banese Card Logo" style="height: 50px;">
+            <div style="display: flex; align-items: center;">
+                <img src="static/img/Dashboard/logousuario.png" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 10px;">
+                <span class="greeting">Olá Gestor!</span>
             </div>
         </div>
     </header>
 
-    <div class="dashboard-container"> <!-- Contêiner principal do dashboard -->
-        <div class="grid"> <!-- Grid para organizar os itens do dashboard -->
-            <div class="grid-item" style="border: 2px solid red;"> <!-- Item do grid -->
-                <form action="{{ url_for('create') }}" method="GET">
-                    <div onclick="this.closest('form').submit()" class="clik-item">
-                        <img src="static/img/Dashboard/plus.png" alt="Criar nova campanha" onclick="this.closest('form').submit()"> <!-- Ícone para criar nova campanha -->
-                        <p>Criar nova campanha</p> <!-- Texto para criar nova campanha -->
-                    </div>
-                </form>
+    <div class="dashboard-container">
+        <!-- Seção de Campanhas em Andamento -->
+        <div class="section">
+            <h2>Gestão Campanhas</h2>
+            <div class="grid">
+                <div class="grid-item">
+                    <form action="{{ url_for('create') }}" method="GET">
+                        <div onclick="this.closest('form').submit()" class="clik-item">
+                            <img src="static/img/Dashboard/plus.png" alt="Criar nova campanha">
+                            <p>Criar nova campanha</p>
+                        </div>
+                    </form>
+                </div>
+                <div class="grid-item">
+                    <form action="{{ url_for('campanhas') }}" method="GET">
+                        <div onclick="this.closest('form').submit()" class="clik-item">
+                            <img src="static/img/Dashboard/icon_lista.png" alt="Visualizar campanhas">
+                            <p>Campanhas</p>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="grid-item" > <!-- Item do grid -->
-                <form action="{{ url_for('campanhas') }}" method="GET">
-                    <div class="clik-item">
-                        <img src="static/img/Dashboard/icon_lapis.png" alt="Editar campanha"> <!-- Ícone para editar campanha -->
-                        <p>Editar campanha</p> <!-- Texto para editar campanha -->
-                    </div>
-                </form>
-            </div>
-            <div class="grid-item" style="border: 2px solid red;"> <!-- Item do grid -->
-                <form action="{{ url_for('campanhas') }}" method="GET">
-                    <div onclick="this.closest('form').submit()" class="clik-item">
-                        <img src="static/img/Dashboard/icon_lista.png" alt="Visualizar campanhas"> <!-- Ícone para visualizar campanhas -->
-                        <p>Campanhas</p> <!-- Texto para visualizar campanhas -->
-                    </div>
-                </form>
-            </div>
-            <div class="grid-item"> <!-- Item do grid -->
-                <img src="static/img/Dashboard/icon_cog.png" alt="Configurar parâmetros"> <!-- Ícone para configurar parâmetros -->
-                <p>Configurar parâmetros</p> <!-- Texto para configurar parâmetros -->
-            </div>
-            <div class="grid-item"> <!-- Item do grid -->
-                <img src="static/img/Dashboard/icon_pessoas.png" alt="Adicionar Participantes"> <!-- Ícone para adicionar participantes -->
-                <p>Adicionar Participantes</p> <!-- Texto para adicionar participantes -->
-            </div>
-            <div class="grid-item"> <!-- Item do grid -->
-                <img src="static/img/Dashboard/icon_grafico.png" alt="Ver relatórios"> <!-- Ícone para ver relatórios -->
-                <p>Ver relatórios</p> <!-- Texto para ver relatórios -->
-            </div>
-            <div class="grid-item"> <!-- Item do grid -->
-                <img src="static/img/Dashboard/icon_cadeado.png" alt="Gerenciar Integrações"> <!-- Ícone para gerenciar integrações -->
-                <p>Gerenciar Integrações</p> <!-- Texto para gerenciar integrações -->
-            </div>
-            <div class="grid-item" style="border: 2px solid red;"> <!-- Item do grid -->
-                <form action="{{ url_for('premiacoes') }}" method="GET">
-                    <div onclick="this.closest('form').submit()" class="clik-item">
-                        <img src="static/img/Dashboard/icon_trofeu.png" alt="Definir Premiações"> <!-- Ícone para definir premiações -->
-                        <p>Definir Premiações</p> <!-- Texto para definir premiações -->
-                    </div>
-                </form>
+        </div>
+
+        <!-- Seção de Relatórios Recentes -->
+        <div class="section">
+            <h2>Relatórios e Integrações</h2>
+            <div class="grid">
+                <div class="grid-item">
+                    <img src="static/img/Dashboard/icon_grafico.png" alt="Ver relatórios">
+                    <p>Ver relatórios</p>
+                </div>
+                <div class="grid-item">
+                    <img src="static/img/Dashboard/icon_cadeado.png" alt="Gerenciar Integrações">
+                    <p>Gerenciar Integrações</p>
+                </div>
             </div>
         </div>
     </div>
+
+    <footer>
+        <p>&copy; 2024 Banese Card. Todos os direitos reservados. | <a href="#">Termos de Uso</a> | <a href="#">Política de Privacidade</a></p>
+    </footer>
+
 </body>
 </html>

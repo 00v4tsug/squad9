@@ -1,0 +1,245 @@
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suas Campanhas</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+rel="stylesheet" />
+<style>
+body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f6f2; /* Cor de fundo */
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* 100% da altura da tela */
+            width: 100vw; /* 100% da largura da tela */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Para evitar rolagem */
+        }
+.container {
+            width: 100vw; /* Garante que ocupe toda a largura da tela */
+            padding: 20px;
+            min-height: 100vh; /* Garante que a altura mínima seja 100vh */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Fundo abrangendo logo, título e campanhas */
+        .header-section {
+            background-color: #f0f4f8; /* Cor de fundo ao redor */
+            padding: 40px; /* Preenchimento aumentado */
+            border-radius: 30px; /* Bordas arredondadas */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra mais suave */
+            text-align: center; /* Centraliza o conteúdo */
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out; /* Animação suave */
+        }
+
+        .header-section:hover {
+            transform: scale(1.02); /* Leve aumento ao passar o mouse */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra mais intensa ao passar o mouse */
+        }
+        h1 {
+            color: #2e3030; /* Cor da fonte "Suas Campanhas" */
+            margin-top: 20px; /* Espaço entre a logo e o título */
+            font-size: 2.5rem; /* Aumenta o tamanho da fonte */
+            font-family: 'Noyh-Bold', sans-serif; /* Fonte Noyh Bold */
+            display: inline-block;
+            padding-bottom: 10px;
+            position: relative; /* Para posicionar o traço */
+        }
+
+        /* Traço pequeno e mais grosso embaixo do texto */
+        h1::after {
+            content: "";
+            display: block;
+            width: 50%; /* Aproximadamente metade do tamanho do texto */
+            height: 4px; /* Mais grosso */
+            background-color: #0ef758; /* Cor verde */
+            margin: 10px auto 0; /* Centralizado e pequeno espaço acima */
+        }
+.button {
+background-color: #004d40;
+color: #fff;
+padding: 15px;
+border: none;
+border-radius: 10px;
+margin: 10px 0;
+width: 100%;
+font-size: 18px;
+cursor: pointer;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.button p {
+margin: 5px 0 0;
+font-size: 14px;
+}
+.content {
+padding: 20px;
+}
+.campaigns,
+.finished-campaigns,
+.edit-campaign {
+display: none;
+}
+.campaigns.active,
+.finished-campaigns.active,
+.edit-campaign.active {
+display: block;
+}
+.campaign-item {
+background-color: #e0f7fa;
+color: #004d40;
+padding: 15px;
+border-radius: 10px;
+margin: 10px 0;
+font-size: 18px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+text-align: left;
+}
+.campaign-item h2 {
+margin: 0 0 10px;
+font-size: 20px;
+}
+.campaign-item p {
+margin: 0;
+font-size: 16px;
+}
+.edit-form {
+text-align: left;
+}
+.edit-form label {
+display: block;
+margin: 10px 0 5px;
+font-size: 16px;
+}
+.edit-form input,
+.edit-form textarea {
+width: 100%;
+padding: 10px;
+border-radius: 5px;
+border: 1px solid #ccc;
+font-size: 16px;
+}
+</style>
+</head>
+<body>
+<div class="container" id="main-screen">
+    <div class="header-section">
+        <img src="static/img/baneseCard.png" alt="Banese Card">
+        <h1>Campanhas</h1>
+        <div class="campaigns">
+            <button class="button" onclick="showCampaigns()">
+            Campanhas ativas
+            <p>Veja as campanhas ativas, selecione e as edite</p>
+            </button>
+            <button class="button" onclick="showFinishedCampaigns()">
+            Campanhas finalizadas
+            <p>Veja as campanhas finalizadas, selecione e as edite</p>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="content campaigns" id="campaigns-screen">
+<h1>Campanhas Ativas</h1>
+<div class="campaign-item"
+onclick="editCampaign('Cashback Supermercado XYZ', 'Receba 10% de cashback em todas as compras no Supermercado XYZ.')">
+<h2>Cashback Supermercado XYZ</h2>
+<p>Receba 10% de cashback em todas as compras no Supermercado XYZ.</p>
+</div>
+<div class="campaign-item"
+onclick="editCampaign('Desconto Farmácia ABC', 'Desconto de 15% em medicamentos na Farmácia ABC.')">
+<h2>Desconto Farmácia ABC</h2>
+<p>Desconto de 15% em medicamentos na Farmácia ABC.</p>
+</div>
+<div class="campaign-item"
+onclick="editCampaign('Promoção Restaurante 123', 'Ganhe uma sobremesa grátis em pedidos acima de R$50 no Restaurante 123.')">
+<h2>Promoção Restaurante 123</h2>
+<p>Ganhe uma sobremesa grátis em pedidos acima de R$50 no Restaurante
+123.</p>
+</div>
+<div class="campaign-item"
+onclick="editCampaign('Cashback Loja de Eletrônicos DEF', 'Receba 8% de cashback em todas as compras na Loja de Eletrônicos DEF.')">
+<h2>Cashback Loja de Eletrônicos DEF</h2>
+<p>Receba 8% de cashback em todas as compras na Loja de Eletrônicos DEF.</p>
+</div>
+<div class="campaign-item"
+onclick="editCampaign('Desconto Academia GHI', 'Desconto de 20% na mensalidade da Academia GHI.')">
+<h2>Desconto Academia GHI</h2>
+<p>Desconto de 20% na mensalidade da Academia GHI.</p>
+</div>
+<button class="button" onclick="goBack()">Voltar</button>
+</div>
+
+<div class="content finished-campaigns" id="finished-campaigns-screen">
+<h1>Campanhas Finalizadas</h1>
+<div class="campaign-item">
+<h2>Cashback Loja de Roupas ABC</h2>
+<p>Receba 5% de cashback em todas as compras na Loja de Roupas ABC.</p>
+</div>
+<div class="campaign-item">
+<h2>Desconto Livraria XYZ</h2>
+<p>Desconto de 20% em livros na Livraria XYZ.</p>
+</div>
+<div class="campaign-item">
+<h2>Promoção Cinema 123</h2>
+<p>Compre 1 ingresso e ganhe outro grátis no Cinema 123.</p>
+</div>
+<button class="button" onclick="goBack()">Voltar</button>
+</div>
+<div class="content edit-campaign" id="edit-campaign-screen">
+<h1>Editar Campanha</h1>
+<form class="edit-form" onsubmit="saveCampaign(event)">
+<label for="campaign-title">Título da Campanha</label>
+<input type="text" id="campaign-title" name="campaign-title" required>
+<label for="campaign-description">Descrição da Campanha</label>
+<textarea id="campaign-description" name="campaign-description" rows="4"
+required></textarea>
+<button class="button" type="submit">Continuar</button>
+</form>
+</div>
+<script>
+function showCampaigns() {
+document.getElementById('main-screen').style.display = 'none';
+document.getElementById('campaigns-screen').classList.add('active');
+document.getElementById('finished-campaigns-screen').classList.remove('active');
+}
+function showFinishedCampaigns() {
+document.getElementById('main-screen').style.display = 'none';
+document.getElementById('finished-campaigns-screen').classList.add('active');
+document.getElementById('campaigns-screen').classList.remove('active');
+}
+function goBack() {
+document.getElementById('campaigns-screen').classList.remove('active');
+document.getElementById('finished-campaigns-screen').classList.remove('active');
+document.getElementById('edit-campaign-screen').classList.remove('active');
+document.getElementById('main-screen').style.display = 'block';
+}
+
+function editCampaign(title, description) {
+document.getElementById('campaigns-screen').classList.remove('active');
+document.getElementById('edit-campaign-screen').classList.add('active');
+document.getElementById('campaign-title').value = title;
+document.getElementById('campaign-description').value = description;
+}
+function saveCampaign(event) {
+event.preventDefault();
+const title = document.getElementById('campaign-title').value;
+const description = document.getElementById('campaign-description').value;
+// Update the campaign item with new values
+const campaignItems = document.querySelectorAll('.campaign-item');
+campaignItems.forEach(item => {
+if (item.querySelector('h2').innerText === title) {
+item.querySelector('p').innerText = description;
+}
+});
+document.getElementById('edit-campaign-screen').classList.remove('active');
+document.getElementById('campaigns-screen').classList.add('active');
+}
+</script>
+</body>
+</html>

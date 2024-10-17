@@ -24,18 +24,6 @@ def login():
             flash('Invalid Credentials. Please try again.')
     return render_template('login.html')
 
-@app.route('/cadastro', methods=['GET', 'POST'])
-def cadastro():
-    if request.method == 'POST': 
-        username = request.form['id-gestor']
-        password = request.form['senha']
-        if username in users and users[username] == password:
-            session['user'] = username
-            return redirect(url_for('dashboard'))
-        else:
-            flash('Invalid Credentials. Please try again.')
-    return render_template('login.html')
-
 @app.route('/')
 def dashboard():
     if 'user' in session:
@@ -100,25 +88,10 @@ def delete(index):
 
 @app.route('/campanhas')
 def campanhas():
-    if 'user' in session:
-        if request.method == 'POST':
-            item = request.form['item']
-            crud_data.append(item)
-            return redirect(url_for('dashboard'))
-        return render_template('campanhas.html')
-    else:
+    if 'user' not in session:
         return redirect(url_for('login'))
 
-@app.route('/premiacoes')
-def premiacoes():
-    if 'user' in session:
-        if request.method == 'POST':
-            item = request.form['item']
-            crud_data.append(item)
-            return redirect(url_for('dashboard'))
-        return render_template('premiacoes.html')
-    else:
-        return redirect(url_for('login'))
+    return render_template('campanhas.html')
 
 @app.route('/logout')
 def logout():
