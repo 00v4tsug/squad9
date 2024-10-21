@@ -27,7 +27,7 @@ def login():
 @app.route('/')
 def dashboard():
     if 'user' in session:
-        return render_template('dashboard.html', crud_data=crud_data)
+        return render_template('dashboard.html')
     else:
         return redirect(url_for('login'))
 
@@ -36,30 +36,21 @@ def dashboard():
 def create():
     if 'user' in session:
         if request.method == 'POST':
-            if 'file' not in request.files:
-                return redirect(url_for('create'))
+            print(request.form)  # Imprime todos os dados do formulário
+            print(request.files)
             nome = request.form['nome']
             descricao = request.form['descricao']
             file = request.files['file']
-            if file.filename == '':
-                return redirect(url_for('create'))
-            if file:
-                if name:
-                    if descricao:
-                        file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-                        file.save(file_path)
-                        crud_data['nomes'].append(nome)
-                        crud_data['descricoes'].append(descricao)
-                        crud_data['nomearquivos'].append(file.filename)
-                    else:
-                        return redirect(url_for('create'))
-                        flash('Campo Descriçao Campanha na consta.')
-                else:
-                    return redirect(url_for('create'))
-                    flash('Campo Nome Campanha na consta.')
+            
+            if not nome or not descricao or not file:
+                flash("Todos os campos são obrigatórios.")
             else:
-                return redirect(url_for('create'))
-                flash('É preciso selecionar uma imagem.') 
+                file_path = os.path.join(app.config['UPLOAD_FOLDER'], file)
+                file.save(file_path)
+                crud_data['nomes'].append(nome)
+                crud_data['descricoes'].append(descricao)
+                crud_data['nomearquivos'].append(file.filename)
+                print (crud_data)
 
         return render_template('create.html')
     else:
