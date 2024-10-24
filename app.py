@@ -12,16 +12,8 @@ crud_data = {
     'nomearquivos': []
 }
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login')
 def login():
-    if request.method == 'POST': 
-        username = request.form['id-gestor']
-        password = request.form['senha']
-        if username in users and users[username] == password:
-            session['user'] = username
-            return redirect(url_for('dashboard'))
-        else:
-            flash('Invalid Credentials. Please try again.')
     return render_template('login.html')
 
 @app.route('/')

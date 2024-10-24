@@ -21,22 +21,33 @@
                     <input type="password" id="senha" name="senha"> <!-- Campo de entrada para a senha -->
                     <button type="submit" class="sign-in-btn">Login</button> <!-- Botão de envio do formulário com evento onclick para a função logIn() -->
                 </form>
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        <ul>
-                            {% for message in messages %}
-                                <li>{{ message }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                {% endwith %}
             </div>
             <div class="admin-box"> <!-- Caixa de administrador -->
                 <h2 id="bem-vindo">Bem vindo Gestor!</h2> <!-- Mensagem de boas-vindas -->
                 <p id="pronto">Pronto para fazer acontecer?</p> <!-- Mensagem adicional -->
-                <button class="admin-btn" href="/cadastro">Cadastrar-se</button> <!-- Botão para administradores -->
             </div>
         </div>
     </div>
+    <script>
+        const users = {
+            // Exemplo de usuários
+            'usuario1': 'senha1',
+            'usuario2': 'senha2'
+        };
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita o envio padrão do formulário
+
+            const username = document.getElementById('id-gestor').value;
+            const password = document.getElementById('senha').value;
+
+            if (users[username] && users[username] === password) {
+                // Redirecionar para o dashboard
+                window.location.href = 'dashboard.html'; // Mude para a sua página de dashboard
+            } else {
+                document.getElementById('message').textContent = 'Credenciais inválidas. Tente novamente.';
+            }
+        });
+    </script>
 </body>
 </html>
